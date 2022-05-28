@@ -1,5 +1,6 @@
 package com.devbaktiyarov.kotlin.authjwt.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.persistence.*
 
@@ -15,6 +16,8 @@ class User {
     var email: String = ""
 
     var password: String = ""
+        @JsonIgnore
+        get() = field
         set(value) {
             val passwordEncoder = BCryptPasswordEncoder()
             field = passwordEncoder.encode(value)
